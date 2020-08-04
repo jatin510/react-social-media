@@ -1,5 +1,12 @@
-export default function posts(state = []) {
-  // {posts : []}
+import { UPDATE_POSTS } from '../actions/actionTypes';
 
-  return state;
+export default function posts(state = [], action) {
+  // {posts : []}
+  switch (action.type) {
+    case UPDATE_POSTS:
+      return action.posts;
+
+    default:
+      return state;
+  }
 }

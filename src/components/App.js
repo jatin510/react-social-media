@@ -1,9 +1,14 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
 import PropTypes from 'prop-types';
+import { BrowserRouter as Router, Link, Route } from 'react-router-dom';
 
 import { fetchPosts } from '../actions/posts';
-import { PostsList } from './';
+import { PostsList, Navbar } from './';
+
+const Login = () => <div>Login</div>;
+const Signup = () => <div>Logout</div>;
+const Home = () => <div>Home</div>;
 
 class App extends Component {
   componentDidMount() {
@@ -15,43 +20,27 @@ class App extends Component {
     console.log('PROPS : ', this.props);
     const { posts } = this.props;
     return (
-      <div>
-        <nav className="nav">
-          <div className="left-div">
-            <img src="" alt="logo" />
-          </div>
-          <div className="search-container">
-            <img className="search-icon" src="" alt="search-icon"></img>
-            <input placeholder="search" />
-            <div className="search-results">
-              <ul>
-                <li className="search-results-row">
-                  <img src="" alt="user-dp" />
-                  <span>Jatin</span>
-                </li>
-                <li className="search-results-row">
-                  <img src="" alt="user-dp" />
-                  <span>Jatin</span>
-                </li>
-              </ul>
-            </div>
-          </div>
-          <div className="right-nav">
-            <div className="user">
-              <img src="" alt="user-dp" id="user-dp" />
-              <span>Jatin</span>
-            </div>
-            <div className="nav-links">
-              <ul>
-                <li>Log in</li>
-                <li>Log out</li>
-                <li>Register</li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-        <PostsList posts={posts} />
-      </div>
+      <Router>
+        <div>
+          <Navbar />
+          {/* <PostsList posts={posts} /> */}
+          <ul>
+            <li>
+              <Link to="/"> Home</Link>
+            </li>
+            <li>
+              <Link to="/login"> Login</Link>
+            </li>
+            <li>
+              <Link to="/signup"> SignUp</Link>
+            </li>
+          </ul>
+
+          <Route path="/login" component={Login} />
+          <Route exact path="/" component={Home} />
+          <Route path="/signup" component={Signup} />
+        </div>
+      </Router>
     );
   }
 }

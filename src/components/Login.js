@@ -4,14 +4,33 @@ export default class Login extends Component {
   constructor(props) {
     super(props);
 
-    this.emailInputRef = React.createRef();
-    this.passwordInputRef = React.createRef();
+    // this.emailInputRef = React.createRef();
+    // this.passwordInputRef = React.createRef();
+    this.state = {
+      email: '',
+      password: '',
+    };
   }
+
+  handleEmailChange = (e) => {
+    // console.log(e.target.value);
+    this.setState({
+      email: e.target.value,
+    });
+  };
+
+  handlePasswordChange = (e) => {
+    // console.log(e.target.value);
+    this.setState({
+      password: e.target.value,
+    });
+  };
 
   handleFormSubmit = (e) => {
     e.preventDefault();
-    console.log('this.emailInputRef ', this.emailInputRef);
-    console.log('this.passwordInputRef ', this.passwordInputRef);
+    // console.log('this.emailInputRef ', this.emailInputRef);
+    // console.log('this.passwordInputRef ', this.passwordInputRef);
+    console.log('this.state ', this.state);
   };
   render() {
     return (
@@ -22,7 +41,8 @@ export default class Login extends Component {
           <input
             type="email"
             placeholder="enter your email"
-            ref={this.emailInputRef}
+            // ref={this.emailInputRef}
+            onChange={this.handleEmailChange}
             required
           />
         </div>
@@ -30,7 +50,8 @@ export default class Login extends Component {
           <input
             type="password"
             placeholder="enter your password"
-            ref={this.passwordInputRef}
+            // ref={this.passwordInputRef}
+            onChange={this.handlePasswordChange}
             required
           />
         </div>
